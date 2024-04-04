@@ -1,0 +1,44 @@
+def is_correct_bracket_sequence(sequence):
+    stack = []
+    for bracket in sequence:
+        if bracket == '[' or bracket == '(':
+            stack.append(bracket)
+        elif bracket == ']' or bracket == ')':
+            if len(stack) == 0:
+                return False
+            elif (bracket == ']' and stack[-1] == '[') or (bracket == ')' and stack[-1] == '('):
+                stack.pop()
+            else:
+                return False
+    return len(stack) == 0
+
+def correct_bracket_sequence(sequence):
+    stack = []
+    corrected_sequence = list(sequence)
+    for i, bracket in enumerate(sequence):
+        if bracket == '[' or bracket == '(':
+            stack.append((bracket, i))
+        elif bracket == ']' or bracket == ')':
+            if len(stack) == 0:
+                corrected_sequence[i] = ''
+            elif (bracket == ']' and stack[-1][0] == '[') or (bracket == ')' and stack[-1][0] == '('):
+                stack.pop()
+            else:
+                stack.pop()
+                corrected_sequence[i] = ''
+    
+    while stack:
+        corrected_sequence[stack.pop()[1]] = ''
+    
+    return ''.join(corrected_sequence)
+
+def main():
+    sequence = input("Enter the bracket sequence: ")
+    if is_correct_bracket_sequence(sequence):
+        print("The given sequence is correct.")
+    else:
+        print("The given sequence is incorrect.")
+        print("Corrected sequence:", correct_bracket_sequence(sequence))
+
+if __name__ == "__main__":
+    main()
