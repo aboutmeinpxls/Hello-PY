@@ -1,11 +1,42 @@
-def greet(name):
+def greet_user(name):
+    """
+    Greets the user based on their name.
+
+    Args:
+        name (str): The name of the user.
+
+    Returns:
+        None
+    """
     if name.lower() == "john":
         print("Hello, John")
     else:
         print("There is no such name")
 
-# Taking input from the user
-user_input = input("Enter a name: ")
 
-# Greeting the user based on the input
-greet(user_input)
+def get_user_input():
+    """
+    Retrieves user input.
+
+    Returns:
+        str: The user's input.
+    """
+    return input("Enter a name: ")
+
+
+def main():
+    """
+    Main function to execute the program.
+    """
+    try:
+        # Taking input from the user
+        user_input = get_user_input()
+
+        # Greeting the user based on the input
+        greet_user(user_input)
+    except Exception as e:
+        print("An error occurred:", e)
+
+
+if __name__ == "__main__":
+    main()
