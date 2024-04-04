@@ -1,25 +1,32 @@
-def get_multiple_of_3_elements(arr):
-    """Get elements of the array that are multiples of 3."""
-    multiples = [num for num in arr if num % 3 == 0]
-    return multiples
+def get_multiples_of_three(input_array):
+    """
+    Filter the input array to find elements that are multiples of three.
+
+    Args:
+    input_array (list): A numeric array.
+
+    Returns:
+    list: An array containing elements that are multiples of three.
+    """
+    try:
+        multiples_of_three = [num for num in input_array if num % 3 == 0]
+        return multiples_of_three
+    except TypeError:
+        raise ValueError("Input array must contain only numeric values.")
+
 
 def main():
-    """Main function to handle user input and output."""
-    # Taking input from the user
+    """
+    Main function to demonstrate the usage of get_multiples_of_three.
+    """
     try:
-        arr = input("Enter a numeric array separated by spaces: ").split()
-
-        # Converting input elements to integers
-        arr = [int(num) for num in arr]
-
-        # Finding and printing elements that are multiples of 3
-        result = get_multiple_of_3_elements(arr)
-        if result:
-            print("Elements that are multiples of 3:", result)
-        else:
-            print("There are no elements that are multiples of 3 in the array.")
+        input_array = [int(x) for x in input("Enter numbers separated by spaces: ").split()]
+        result = get_multiples_of_three(input_array)
+        print("Elements that are multiples of three:", result)
     except ValueError:
-        print("Invalid input. Please enter a valid numeric array.")
+        print("Error: Please enter valid numeric values separated by spaces.")
+
 
 if __name__ == "__main__":
     main()
+
